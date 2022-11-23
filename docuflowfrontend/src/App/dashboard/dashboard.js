@@ -3,6 +3,8 @@ import { useUser } from '../auth/useUser'
 import { useToken } from '../auth/useToken'
 import axios from 'axios';
 import DocumentItem from './components/documentItem/documentItem';
+import NavigationMenu from '../NavigationMenu/navigationMenu';
+
 export default function Dashboard() {
 
     const user = useUser();
@@ -45,6 +47,7 @@ export default function Dashboard() {
 
     return (
         <div className='dashboard'>
+            <NavigationMenu />
             <div className='userDocumentations'>
                 My projects:
                 {

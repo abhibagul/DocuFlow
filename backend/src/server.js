@@ -20,12 +20,13 @@ app.use(express.static(path.join(__dirname, '../build')))
 
 app.get(/^(?!\/api).+/, (req, res) => {
 
-
-    if (fs.existsSync(path.join(__dirname, '../' + req.originalUrl))) {
+    //if image file exist
+    if (fs.existsSync(path.join(__dirname, '../' + req.originalUrl)) && req.originalUrl.startsWith('/img/')) {
         res.sendFile(path.join(__dirname, '../' + req.originalUrl))
         return;
     }
-    res.sendFile(path.join(__dirname, '../build/index.html'))
+    // res.sendFile(path.join(__dirname, '../build/index.html'))
+    res.status(200).json({ message: "Project under development" });
 
 })
 

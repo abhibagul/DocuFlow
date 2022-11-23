@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useUser } from '../../auth/useUser';
 import { useToken } from '../../auth/useToken';
 import { useParams } from 'react-router-dom';
+import NavigationMenu from '../../NavigationMenu/navigationMenu';
 
 import AnchorLink from './AnchorLink/anchorLink';
 import OnUpdated from './onUpdated/onUpdated';
@@ -11,6 +12,9 @@ import CopySelection from './copySelection/copySelection';
 import PasteSelection from './pasteSelection/pasteSelection';
 import ContextMenuClick from './contextMenuClick/contextMenuClick';
 import CutSelection from './cutSelection/cutSelection';
+import OnHighlight from './onHighlight/onHighlight';
+import CloseTab from './closeTab/closeTab';
+import DoubleClick from './doubleClick/doubleClick';
 
 import './documentation.css'
 export default function DocumentationEditor(props) {
@@ -68,6 +72,7 @@ export default function DocumentationEditor(props) {
 
     return (
         <>
+            <NavigationMenu />
             <div className='documentation_header doc-row'>
                 <h1>{docData.projectName}</h1>
                 <div className='documentationMeta'>
@@ -91,6 +96,9 @@ export default function DocumentationEditor(props) {
                                     {(e.type == "pasteSelection") && <PasteSelection e={e} count={(i + 1)} />}
                                     {(e.type == "contextMenuClick") && <ContextMenuClick e={e} count={(i + 1)} />}
                                     {(e.type == "cutSelection") && <CutSelection e={e} count={(i + 1)} />}
+                                    {(e.type == "onHighlight") && <OnHighlight e={e} count={(i + 1)} />}
+                                    {(e.type == "onRemoved") && <CloseTab e={e} allSteps={docData.steps} count={(i + 1)} />}
+                                    {(e.type == "doubleClick") && <DoubleClick e={e} count={(i + 1)} />}
                                 </section>
                             )
                         })
