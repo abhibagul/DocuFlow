@@ -1,0 +1,143 @@
+.step_prevImg {
+    position: relative;
+}
+
+.prev_action_shower {
+    position: absolute;
+    display: block;
+    background: #fffa0050;
+    border: 2px solid #fffa00;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    transform: translateX(-50%) translateY(-50%);
+    background-image: url('../../../../public/assets/img/cursor_pointer.png');
+    background-size: 25px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    transition: .2s all ease-in-out;
+}
+
+.prev_action_shower:hover {
+    transform: translateX(-50%) translateY(-50%) scale(1.2);
+}
+
+.onUpdated-step .pageNavPrev {
+    display: flex;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, .1);
+    padding: 5px 10px;
+    gap: 10px;
+    align-items: center;
+    border-radius: 5px;
+    justify-content: ce;
+}
+
+.pageDets p {
+    display: block;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.pageDets .pageTitle {
+    font-size: 15px;
+    ;
+    font-weight: 600;
+    color: #0d6efd;
+}
+
+.pageDets .redirectedTo {
+    color: #888;
+    font-size: 12px;
+}
+
+.doc-row {
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 20px 10px;
+}
+
+.documentation section.step {
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 2px 2px 5px rgb(0 0 0 / 2%), -2px -2px 5px rgb(0 0 0 / 2%);
+    background: #fff;
+    border-top: 2px solid #0d6efd;
+}
+
+.documentation_outer {
+    background: #f7f7f7
+}
+
+.step_prevImg img {
+    max-width: 100%
+}
+
+.pageDets {
+    padding: 5px 10px;
+}
+
+p.step_message {
+    font-size: 14px;
+}
+
+.step-data {
+    display: flex;
+    margin-bottom: 20px;
+    gap: 10px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+
+.step-count {
+    flex-shrink: 0;
+    width: 40px;
+}
+
+.step_message {
+    flex-grow: 1;
+    align-self: center;
+}
+
+.step-count span {
+    height: 40px;
+    text-align: center;
+    min-width: 40px;
+    line-height: 35px;
+    display: block;
+    background: #0d6efd50;
+    border-radius: 100%;
+    color: #0d6efd;
+    border: 2px solid #0d6efd90;
+}
+
+.documentationMeta {
+    font-size: 14px;
+    margin-top: 15px;
+    color: #555;
+}
+
+.pageFavicon {
+    align-self: start;
+    padding-top: 10px;
+}
+
+[contenteditable]:focus,
+[contenteditable]:hover {
+    outline: 2px solid #0d6efd;
+    border-radius: 0px;
+}
+
+kbd {
+    background-color: #eee;
+    border-radius: 3px;
+    border: 1px solid #b4b4b4;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .2), 0 2px 0 0 rgba(255, 255, 255, .7) inset;
+    color: #333;
+    display: inline-block;
+    font-size: .85em;
+    font-weight: 700;
+    line-height: 1;
+    padding: 2px 4px;
+    white-space: nowrap;
+}

@@ -1,0 +1,12 @@
+#node modules
+node_modules
+
+# Env files
+.env
+
+#build
+build
+
+#image personal data
+/backend/img/* 
+
