@@ -178,3 +178,52 @@
     text-align: center;
     padding: 100px 0px;
 }
+
+@media only screen and (max-width: 992px) {
+
+    .burnoverlay,
+    .text-back {
+        display: none;
+    }
+
+    .home-container.hero-text {
+        position: relative;
+        left: 0px;
+        top: 0px;
+        color: #000;
+        margin-top: 100px;
+        max-width: 80%;
+        width: 100%;
+    }
+
+    .blur-bg-img {
+        width: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 100px;
+    }
+
+    .bg-grad {
+        clip-path: polygon(0 0, 100vw 0, 100vw 35vh, 0 50vh);
+    }
+
+    .navmenu {
+        display: none;
+    }
+
+    .login_actions {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .login_actions a {
+        padding: 10px 20px !important;
+    }
+
+    .home-container {
+        flex-direction: column;
+        gap: 10px;
+        padding: 20px;
+    }
+}
