@@ -20,6 +20,7 @@ app.use(express.static(path.join(__dirname, '../build')))
 
 app.get(/^(?!\/api).+/, (req, res) => {
 
+    console.log(req.originalUrl);
     //if image file exist
     if (fs.existsSync(path.join(__dirname, '../' + req.originalUrl)) && req.originalUrl.startsWith('/img/')) {
         res.sendFile(path.join(__dirname, '../' + req.originalUrl))

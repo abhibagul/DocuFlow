@@ -53,7 +53,7 @@ export default function Homepage() {
                     </div>
 
                     <div className='blur-bg-img'>
-                        <img src='/assets/hero1.jpg' />
+                        <img src='/assets/hero1.JPG' />
                     </div>
                 </div>
 
@@ -89,7 +89,7 @@ export default function Homepage() {
                                     </div>
                                     <div className='step_prevImg'>
                                         <div className='prev_action_shower' style={{ left: "35%", top: "51%" }}></div>
-                                        <img src='/assets/step2.jpg' />
+                                        <img src='/assets/step2.JPG' />
                                     </div>
                                 </div>
                             </section>
@@ -118,7 +118,7 @@ export default function Homepage() {
                                         </p>
                                     </div>
                                     <div className='step_prevImg'>
-                                        <img src='/assets/hero1.jpg' />
+                                        <img src='/assets/hero1.JPG' />
                                     </div>
                                 </div>
                             </section>
