@@ -18,8 +18,21 @@
     transition: .2s all ease-in-out;
 }
 
-.prev_action_shower:hover {
-    transform: translateX(-50%) translateY(-50%) scale(1.2);
+.step:hover .prev_action_shower {
+    animation-name: highlightClick;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes highlightClick {
+    from {
+        transform: translateX(-50%) translateY(-50%) scale(1);
+    }
+
+    to {
+        transform: translateX(-50%) translateY(-50%) scale(1.2);
+    }
 }
 
 .onUpdated-step .pageNavPrev {
@@ -30,7 +43,7 @@
     gap: 10px;
     align-items: center;
     border-radius: 5px;
-    justify-content: ce;
+    background: #f7f7f7;
 }
 
 .pageDets p {

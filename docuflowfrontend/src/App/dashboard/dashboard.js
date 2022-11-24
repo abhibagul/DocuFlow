@@ -5,6 +5,8 @@ import axios from 'axios';
 import DocumentItem from './components/documentItem/documentItem';
 import NavigationMenu from '../NavigationMenu/navigationMenu';
 
+import './dash.css'
+
 export default function Dashboard() {
 
     const user = useUser();
@@ -47,9 +49,9 @@ export default function Dashboard() {
 
     return (
         <div className='dashboard'>
-            <NavigationMenu />
-            <div className='userDocumentations'>
-                My projects:
+            <NavigationMenu documentId={null} user={user} />
+            <div className='userDocumentations dash-row-grid'>
+
                 {
                     docs.documents.map((e, i) => {
                         return (<DocumentItem key={i} elem={e} />)

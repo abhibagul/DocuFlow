@@ -30,7 +30,7 @@ export default function PasteSelection(props) {
         <div>
             <div className='step-data'>
                 <div className='step-count'><span>{count}</span></div>
-                <p className='step_message' contentEditable> {getKeysHolding(e.data.event)} Content is pasted into {e.data.event.target.nodeName.toLowerCase()}.</p>
+                <p className='step_message' suppressContentEditableWarning={true} contentEditable> {getKeysHolding(e.data.event)} Content is pasted into {e.data.event.target.nodeName.toLowerCase()}.</p>
             </div>
             <div className='step_prevImg'>
                 {

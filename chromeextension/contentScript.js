@@ -80,37 +80,43 @@ async function sendMessage(t, e) {
 function init() {
     let __docuflow_elems = document.querySelectorAll("*");
     __docuflow_elems.forEach((__e) => {
-        __e.addEventListener('click', (e) => {
-            e.stopPropagation()
-            sendMessage("AnchorLinkClick", e)
+        __e.addEventListener('click', function (e) {
+            // e.stopPropagation()
+            if (this === e.target) {
+                sendMessage("AnchorLinkClick", e)
+            }
         })
     })
 
     __docuflow_elems.forEach((__e) => {
-        __e.addEventListener('contextmenu', (e) => {
+        __e.addEventListener('contextmenu', function (e) {
             e.stopPropagation()
             sendMessage("contextMenuClick", e)
+
         })
     })
 
     __docuflow_elems.forEach((__e) => {
-        __e.addEventListener('copy', (e) => {
+        __e.addEventListener('copy', function (e) {
             e.stopPropagation()
             sendMessage("copySelection", e)
+
         })
     })
 
     __docuflow_elems.forEach((__e) => {
-        __e.addEventListener('cut', (e) => {
+        __e.addEventListener('cut', function (e) {
             e.stopPropagation()
             sendMessage("cutSelection", e)
+
         })
     })
 
     __docuflow_elems.forEach((__e) => {
-        __e.addEventListener('dblclick', (e) => {
+        __e.addEventListener('dblclick', function (e) {
             e.stopPropagation()
             sendMessage("doubleClick", e)
+
         })
     })
 
@@ -122,17 +128,19 @@ function init() {
     // })
 
     __docuflow_elems.forEach((__e) => {
-        __e.addEventListener('paste', (e) => {
+        __e.addEventListener('paste', function (e) {
             e.stopPropagation()
             sendMessage("pasteSelection", e)
+
         })
     })
 
     __docuflow_elems.forEach((__e) => {
-        __e.addEventListener('resize', (e) => {
-
-            e.stopPropagation()
-            sendMessage("resize", e)
+        __e.addEventListener('resize', function (e) {
+            // e.stopPropagation()
+            if (this === e.target) {
+                sendMessage("resize", e)
+            }
         })
     })
 
@@ -145,16 +153,20 @@ function init() {
     // })
 
     __docuflow_elems.forEach((__e) => {
-        __e.addEventListener('search', (e) => {
-            e.stopPropagation()
-            sendMessage("search", e)
+        __e.addEventListener('search', function (e) {
+            // e.stopPropagation()
+            if (this === e.target) {
+                sendMessage("search", e)
+            }
         })
     })
 
     __docuflow_elems.forEach((__e) => {
-        __e.addEventListener('submit', (e) => {
-            e.stopPropagation()
-            sendMessage("submit", e)
+        __e.addEventListener('submit', function (e) {
+            // e.stopPropagation()
+            if (this === e.target) {
+                sendMessage("submit", e)
+            }
         })
     })
 }

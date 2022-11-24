@@ -30,7 +30,7 @@ export default function OnSubmit(props) {
         <div>
             <div className='step-data'>
                 <div className='step-count'><span>{count}</span></div>
-                <p className='step_message' contentEditable> {parse(getKeysHolding(e.data.event))} Submit the form.</p>
+                <p className='step_message' suppressContentEditableWarning={true} contentEditable> {parse(getKeysHolding(e.data.event))} Submit the form.</p>
             </div>
             <div className='step_prevImg'>
                 {

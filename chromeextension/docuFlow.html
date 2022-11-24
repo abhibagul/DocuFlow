@@ -5,30 +5,125 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>DocuFlow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Montserrat', sans-serif;
+            box-sizing: border-box;
+        }
+
+        html {
+            padding: 5px;
+            background: #f7f7f7;
+        }
+
+        .headeImgLogo {
+            padding: 10px;
+        }
+
+        .headeImgLogo img {
+            max-width: 200px;
+        }
+
+        .loginForm {
+            padding: 10px;
+            background: #fff;
+            border-radius: 5px;
+            border-top: 2px solid #0d6efd;
+        }
+
+        .loginForm input {
+            border: 1px solid rgba(0, 0, 0, .1);
+            padding: 5px 10px;
+            margin: 5px 0px;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .loginForm label {
+            font-weight: 600;
+            margin-top: 5px;
+            display: block;
+        }
+
+        .loginForm input[type=submit] {
+            color: #fff;
+            background: #0d6efd;
+            border: none;
+            padding: 10px 10px;
+        }
+
+        .loginForm p {
+            text-align: center;
+        }
+
+        span.flex-btn {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            gap: 10px;
+            padding: 5px 10px;
+            justify-content: center;
+        }
+
+        span.flex-btn img {
+            max-width: 20px;
+        }
+
+        .user_logged_in button {
+            width: 100%;
+            margin: 5px 0px;
+            background: #0d6efd;
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        #logout {
+            background: red;
+            padding: 7px 0px;
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>DocuFlow</h1>
+    <div class="headeImgLogo">
+        <img src="/logo_dark.png">
+    </div>
+
     <p id="showmessage"></p>
-    <img id="" />
 
     <div class="loginForm">
         <form id="loginForm">
-            <input type="email" />
-            <input type="password" />
-            <input type="submit" />
+            <!-- <label for="emailId">Email:</label> -->
+            <input id="emailId" type="email" placeholder="Email" />
+            <!-- <label for="password">Password:</label> -->
+            <input id="password" type="password" placeholder="Password" />
+            <input type="submit" value="Login" />
         </form>
+        <p>
+            Dont have account? <a href="/" target="_blank">Create Account</a>
+        </p>
     </div>
 
-    <button id="createProject">Start recording</button>
-    <button id="stopProject">Stop recording</button>
-
-    <button id="logout">Logout</button>
-
-    <div class="showres">
-
+    <div class="user_logged_in">
+        <button id="createProject">
+            <span class="flex-btn">
+                <img src="rec-button.png" />
+                <span>Start recording</span>
+            </span>
+        </button>
+        <button id="stopProject">
+            <span class="flex-btn">
+                <img src="stop-button.png" />
+                <span>Stop recording</span>
+            </span>
+        </button>
+        <button id="logout">Logout</button>
     </div>
     <script type="module" src="/popup.js"></script>
 

@@ -10,7 +10,7 @@ export default function OnHighlight(props) {
         <div className='onUpdated-step'>
             <div className='step-data'>
                 <div className='step-count'><span>{count}</span></div>
-                <p className='step_message' contentEditable> Open the {e.data.title} tab. </p>
+                <p className='step_message' suppressContentEditableWarning={true} contentEditable> Open the {e.data.title} tab. </p>
             </div>
             <div className='pageNavPrev'>
                 {(e.data.favIconUrl) && <div className='pageFavicon'>

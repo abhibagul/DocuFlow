@@ -63,7 +63,7 @@ export default function ContextMenuClick(props) {
         <div>
             <div className='step-data'>
                 <div className='step-count'><span>{count}</span></div>
-                <p className='step_message' contentEditable> {parse(getKeysHolding(e.data.event))} Right-Click on the {getClickType(e.data.event.target)} to open the context menu</p>
+                <p className='step_message' suppressContentEditableWarning={true} contentEditable> {parse(getKeysHolding(e.data.event))} Right-Click on the {getClickType(e.data.event.target)} to open the context menu</p>
             </div>
             <div className='step_prevImg'>
                 <div className='prev_action_shower bg-context' style={getClickPosition(e.data.event)}></div>

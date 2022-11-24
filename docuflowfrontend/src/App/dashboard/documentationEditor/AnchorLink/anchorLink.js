@@ -2,7 +2,7 @@ import React from 'react'
 import parse from 'html-react-parser';
 
 export default function AnchorLink(props) {
-    const { e, count } = props;
+    const { e, count, updateMsg } = props;
 
 
 
@@ -63,7 +63,21 @@ export default function AnchorLink(props) {
         <div>
             <div className='step-data'>
                 <div className='step-count'><span>{count}</span></div>
-                <p className='step_message' contentEditable> {parse(getKeysHolding(e.data.event))} Click on the {getClickType(e.data.event.target)}</p>
+                <p className='step_message' onKeyUp={(el) => { updateMsg(`steps[${(count - 1)}]`, { ...e, "msg": encodeURIComponent((el.target.innerHTML) ? el.target.innerHTML : "") }) }} suppressContentEditableWarning={true} contentEditable>
+                    {
+                        (e.hasOwnProperty("msg")) ?
+                            <>
+                                {/* {parse(decodeURIComponent(e.msg))} */}
+                                {console.log("inside", parse(decodeURIComponent(e.msg)), e.msg.length)}
+                                {(e.msg.length > 0) && parse(decodeURIComponent(e.msg))}
+                            </>
+                            :
+                            <>
+                                {parse(getKeysHolding(e.data.event))}
+                                Click on the {getClickType(e.data.event.target)}
+                            </>
+                    }
+                </p>
             </div>
             <div className='step_prevImg'>
                 <div className='prev_action_shower' style={getClickPosition(e.data.event)}></div>
@@ -71,6 +85,6 @@ export default function AnchorLink(props) {
                     (e.img) ? <img src={'/' + e.img} /> : ""
                 }
             </div>
-        </div>
+        </div >
     )
 }

@@ -21,11 +21,15 @@ export const createProject = {
             published: false
         });
 
+        let yourDate = new Date()
+        yourDate = yourDate.toISOString().split('T')[0]
+
         //initial index page
         const indexPage = {
             authorId: null,
-            projectName: "New Documentation",
+            projectName: "New Documentation - " + yourDate,
             documentCreated: new Date(),
+            published: false,
             steps: []
         }
 

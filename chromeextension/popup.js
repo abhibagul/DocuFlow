@@ -1,12 +1,3 @@
-import { getCurrentTab } from './utlis.js';
-
-let __all_actions__ = [];
-
-const _show_all_actions = () => {
-
-}
-
-
 async function getNewDocumentationId() {
     return await chrome.storage.local.get("token", async function (tokenData) {
 
@@ -29,16 +20,27 @@ async function getNewDocumentationId() {
                                 "Error setting " + " token " + " to " + JSON.stringify(data.token) +
                                 ": " + chrome.runtime.lastError.message
                             );
+                            document.querySelector("#createProject").style.display = "block";
+                            document.querySelector("#stopProject").style.display = "none";
+                            return;
                         }
+                        alert("Recording started..")
+                        document.querySelector("#createProject").style.display = "none";
+                        document.querySelector("#stopProject").style.display = "block";
+
                     });
 
 
                 } else {
-                    alert("Error creating documentation : " + data)
+                    alert("Error creating documentation : " + data);
+                    document.querySelector("#createProject").style.display = "block";
+                    document.querySelector("#stopProject").style.display = "none";
                 }
             }).catch(err => {
                 //console.log("err", err);
-                alert("Error creating documentation")
+                alert("Error creating documentation");
+                document.querySelector("#createProject").style.display = "block";
+                document.querySelector("#stopProject").style.display = "none";
             });
     });
 }
@@ -47,32 +49,7 @@ document.getElementById("createProject").onclick = (async function () {
     getNewDocumentationId()
 })
 
-// async function postData(url = '', data = {}) {
-//     return await chrome.storage.local.get("token", async function (data) {
 
-//         let token = "";
-//         if (data && data.token) {
-//             token = data.token;
-//         }
-//         //console.log('token is', token)
-
-//         const response = await fetch(url, {
-//             method: 'POST',
-//             mode: 'cors',
-//             cache: 'no-cache',
-//             credentials: 'same-origin',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//                 'authorization': 'Bearer ' + token
-//             },
-//             redirect: 'follow',
-//             referrerPolicy: 'no-referrer',
-//             body: JSON.stringify(data)
-//         });
-//         return response.json();
-//     });
-
-// }
 
 async function postData(url = '', data = {}, headersAttr = {}) {
 
@@ -95,15 +72,20 @@ async function postData(url = '', data = {}, headersAttr = {}) {
 }
 
 document.getElementById("logout").onclick = (async function (e) {
+
     //delete token from storage
-    chrome.storage.local.remove(["token"], function () {
-        alert("Logged out")
+    chrome.storage.local.remove(["token", "docuId"], function () {
+        alert("Logged out");
+        document.querySelector(".loginForm").style.display = "block";
+        document.querySelector(".user_logged_in").style.display = "none";
     })
 })
 
 document.getElementById("stopProject").onclick = (async function (e) {
     chrome.storage.local.remove(["docuId"], function () {
-        alert("Recording stopped..")
+        alert("Recording stopped..");
+        document.querySelector("#createProject").style.display = "block";
+        document.querySelector("#stopProject").style.display = "none";
     })
 })
 
@@ -118,21 +100,29 @@ document.getElementById("loginForm").onsubmit = (async function (e) {
             if (data && data.token) {
                 chrome.storage.local.set({ token: data.token }, function () {
                     if (chrome.runtime.lastError) {
-                        console.error(
+                        alert(
                             "Error setting " + " token " + " to " + JSON.stringify(data.token) +
                             ": " + chrome.runtime.lastError.message
                         );
+                        return;
                     }
+
+                    document.querySelector(".loginForm").style.display = "none";
+                    document.querySelector(".user_logged_in").style.display = "block";
                 });
 
 
             } else {
                 alert("Invalid credentials : " + data)
+                document.querySelector(".loginForm").style.display = "block";
+                document.querySelector(".user_logged_in").style.display = "none";
             }
             //console.log("login data", data);
         }).catch(err => {
             //console.log("err", err);
             alert("Invalid credentials")
+            document.querySelector(".loginForm").style.display = "block";
+            document.querySelector(".user_logged_in").style.display = "none";
         });
 
     //console.log(document, __username, __password);
@@ -144,29 +134,35 @@ document.addEventListener("DOMContentLoaded", async () => {
     chrome.storage.local.get("token", function (data) {
         if (data && data.token) {
             let { token } = data;
-            document.querySelector("#loginForm").innerHTML = token;
+            if (token.length > 0) {
+                document.querySelector(".loginForm").style.display = "none";
+                document.querySelector(".user_logged_in").style.display = "block";
+            } else {
+                document.querySelector(".loginForm").style.display = "block";
+                document.querySelector(".user_logged_in").style.display = "none";
+            }
+        } else {
+            document.querySelector(".loginForm").style.display = "block";
+            document.querySelector(".user_logged_in").style.display = "none";
         }
     });
 
-    // const { tab, img } = await getCurrentTab();
 
-    // await chrome.storage.sync.get("documentation", data => {
-    //     const __existing_actions = data["documentation"] ? JSON.parse(data["documentation"]) : []
+    chrome.storage.local.get("docuId", function (data) {
+        if (data && data.docuId) {
+            let { docuId } = data;
+            if (docuId.length > 0) {
+                document.querySelector("#createProject").style.display = "none";
+                document.querySelector("#stopProject").style.display = "block";
+            } else {
+                document.querySelector("#createProject").style.display = "block";
+                document.querySelector("#stopProject").style.display = "none";
+            }
+        } else {
+            document.querySelector("#createProject").style.display = "block";
+            document.querySelector("#stopProject").style.display = "none";
+        }
+    });
 
 
-    //     __all_actions__ = [...__all_actions__, ...__existing_actions]
-
-    //     __all_actions__.push({ tab, img });
-
-    //     ////console.log(__all_actions__, "dom loaded");
-
-    //     let __doc = "";
-    //     for (let a of __all_actions__) {
-    //         if (a.tab.url) {
-    //             __doc += `<div class="step">User navigated to <code>${a.tab.url}</code><div class="imgprev"><img style="max-width:150px" src="${a.img}"></div></div>`;
-    //         }
-    //     }
-
-    //     document.querySelector(".showres").insertAdjacentHTML('beforeend', __doc);
-    // })
 })
