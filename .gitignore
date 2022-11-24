@@ -8,7 +8,7 @@ node_modules
 /docuflowfrontend/build
 
 #image personal data
-/backend/img/* 
+/backend/img/*.jpg
 
 #extension key
 /private

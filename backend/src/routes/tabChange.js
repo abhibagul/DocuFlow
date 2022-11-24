@@ -51,7 +51,7 @@ export const tabChange = {
                         quality: 90,
                         force: true,
                     }).toFile(__saveName, function (err, info) {
-
+                        console.log("img creation", err, info)
                     });
                     delete saveData["data"]["img"];
                 }
