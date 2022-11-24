@@ -1,6 +1,6 @@
 // send data to server
 async function postData(data = {}, headr = {}) {
-    const response = await fetch("http://localhost:8000/api/tabChange/", {
+    const response = await fetch("https://docuflow.onrender.com/api/tabChange/", {
         method: 'POST',
         mode: 'cors',
         cache: 'no-cache',

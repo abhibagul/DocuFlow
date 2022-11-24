@@ -34,7 +34,7 @@ async function getNewDocumentationId() {
             return;
         }
 
-        await postData('http://localhost:8000/api/create-documentation/', {}, { 'authorization': 'Bearer ' + token })
+        await postData('https://docuflow.onrender.com/api/create-documentation/', {}, { 'authorization': 'Bearer ' + token })
             .then((data) => {
                 if (data && data.docuId) {
                     chrome.storage.local.set({ docuId: data.docuId }, function () {
@@ -105,7 +105,7 @@ document.getElementById("loginForm").onsubmit = (async function (e) {
     let __username = document.querySelector(`#loginForm input[type="email"]`).value;
     let __password = document.querySelector(`#loginForm input[type="password"]`).value;
 
-    await postData('http://localhost:8000/api/login/', { email: __username, password: __password })
+    await postData('https://docuflow.onrender.com/api/login/', { email: __username, password: __password })
         .then((data) => {
             if (data && data.token) {
                 chrome.storage.local.set({ token: data.token }, function () {

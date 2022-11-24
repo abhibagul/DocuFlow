@@ -5,7 +5,7 @@ node_modules
 .env
 
 #build
-build
+/docuflowfrontend/build
 
 #image personal data
 /backend/img/* 
