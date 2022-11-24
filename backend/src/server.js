@@ -25,8 +25,9 @@ app.get(/^(?!\/api).+/, (req, res) => {
         res.sendFile(path.join(__dirname, '../' + req.originalUrl))
         return;
     }
-    // res.sendFile(path.join(__dirname, '../build/index.html'))
-    res.status(200).json({ message: "Project under development" });
+
+    res.sendFile(path.join(__dirname, '../build/index.html'))
+    // res.status(200).json({ message: "Project under development" });
 
 })
 
