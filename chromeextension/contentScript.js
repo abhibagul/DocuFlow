@@ -1,22 +1,7 @@
-
-chrome.runtime.onMessage.addListener(function (request, sener, sendResponse) {
-    console.log(request);
-})
-
-// chrome.runtime.sendMessage({ greeting: "hello" }, function (response) {
-//     console.log(response.farewell);
-// })
-
-
-//recieve a message
-chrome.runtime.onMessage.addListener(
-    function (request, sender, sendResponse) {
-        if (request.action === "resize") {
-
-        }
-    }
-)
-
+/**
+ * Sends event to the 
+ * background script
+ */
 async function sendMessage(t, e) {
     let clientX = 0;
     let clientY = 0;
@@ -69,10 +54,6 @@ async function sendMessage(t, e) {
         }
     }
 
-
-
-
-    // console.log("Action recorded", t, e, { windowW: window.innerWidth, windowH: window.innerHeight, clientX, clientY, subType, altKey, offsetX, offsetY, target, ctrlKey, shiftKey });
     await chrome.runtime.sendMessage({ action: t, edata: { windowW: window.innerWidth, windowH: window.innerHeight, clientX, clientY, subType, altKey, offsetX, offsetY, target, ctrlKey, shiftKey } })
 
 }
@@ -144,13 +125,6 @@ function init() {
         })
     })
 
-    // unexpected behaviour
-    // __docuflow_elems.forEach((__e) => {
-    //     __e.addEventListener('scroll', (e) => {
-    //         e.stopPropagation()
-    //         sendMessage("scroll", e)
-    //     })
-    // })
 
     __docuflow_elems.forEach((__e) => {
         __e.addEventListener('search', function (e) {

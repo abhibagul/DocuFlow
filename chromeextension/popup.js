@@ -1,3 +1,27 @@
+async function postData(url = '', data = {}, headersAttr = {}) {
+
+    const response = await fetch(url, {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+            ...headersAttr
+        },
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
+        body: JSON.stringify(data)
+    });
+    return response.json();
+
+
+}
+
+/**
+ * Create new documentation
+ * requires JWT token.
+ */
 async function getNewDocumentationId() {
     return await chrome.storage.local.get("token", async function (tokenData) {
 
@@ -12,7 +36,6 @@ async function getNewDocumentationId() {
 
         await postData('http://localhost:8000/api/create-documentation/', {}, { 'authorization': 'Bearer ' + token })
             .then((data) => {
-                //console.log("docid data", data);
                 if (data && data.docuId) {
                     chrome.storage.local.set({ docuId: data.docuId }, function () {
                         if (chrome.runtime.lastError) {
@@ -37,7 +60,6 @@ async function getNewDocumentationId() {
                     document.querySelector("#stopProject").style.display = "none";
                 }
             }).catch(err => {
-                //console.log("err", err);
                 alert("Error creating documentation");
                 document.querySelector("#createProject").style.display = "block";
                 document.querySelector("#stopProject").style.display = "none";
@@ -49,28 +71,10 @@ document.getElementById("createProject").onclick = (async function () {
     getNewDocumentationId()
 })
 
-
-
-async function postData(url = '', data = {}, headersAttr = {}) {
-
-    const response = await fetch(url, {
-        method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-            'Content-Type': 'application/json',
-            ...headersAttr
-        },
-        redirect: 'follow',
-        referrerPolicy: 'no-referrer',
-        body: JSON.stringify(data)
-    });
-    return response.json();
-
-
-}
-
+/**
+ * Logout event
+ * deletes JWT token from the system
+ */
 document.getElementById("logout").onclick = (async function (e) {
 
     //delete token from storage
@@ -81,6 +85,9 @@ document.getElementById("logout").onclick = (async function (e) {
     })
 })
 
+/**
+ * Stop recording by removing document id
+ */
 document.getElementById("stopProject").onclick = (async function (e) {
     chrome.storage.local.remove(["docuId"], function () {
         alert("Recording stopped..");
@@ -89,6 +96,9 @@ document.getElementById("stopProject").onclick = (async function (e) {
     })
 })
 
+/**
+ * Login user
+ */
 document.getElementById("loginForm").onsubmit = (async function (e) {
     e.preventDefault();
 
@@ -117,17 +127,17 @@ document.getElementById("loginForm").onsubmit = (async function (e) {
                 document.querySelector(".loginForm").style.display = "block";
                 document.querySelector(".user_logged_in").style.display = "none";
             }
-            //console.log("login data", data);
         }).catch(err => {
-            //console.log("err", err);
             alert("Invalid credentials")
             document.querySelector(".loginForm").style.display = "block";
             document.querySelector(".user_logged_in").style.display = "none";
         });
 
-    //console.log(document, __username, __password);
 })
 
+/**
+ * Initialize when page is loaded based on data
+ */
 document.addEventListener("DOMContentLoaded", async () => {
 
     //check if token exist
