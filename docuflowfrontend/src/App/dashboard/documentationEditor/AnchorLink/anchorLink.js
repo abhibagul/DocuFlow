@@ -66,16 +66,14 @@ export default function AnchorLink(props) {
                 <p className='step_message' onKeyUp={(el) => { updateMsg(`steps[${(count - 1)}]`, { ...e, "msg": encodeURIComponent((el.target.innerHTML) ? el.target.innerHTML : "") }) }} suppressContentEditableWarning={true} contentEditable>
                     {
                         (e.hasOwnProperty("msg")) ?
-                            <>
-                                {/* {parse(decodeURIComponent(e.msg))} */}
-                                {console.log("inside", parse(decodeURIComponent(e.msg)), e.msg.length)}
-                                {(e.msg.length > 0) && parse(decodeURIComponent(e.msg))}
-                            </>
+                            <span>
+                                {(e.msg.length > 0) ? parse(decodeURIComponent(e.msg)) : ""}
+                            </span>
                             :
-                            <>
+                            <span>
                                 {parse(getKeysHolding(e.data.event))}
                                 Click on the {getClickType(e.data.event.target)}
-                            </>
+                            </span>
                     }
                 </p>
             </div>

@@ -83,5 +83,31 @@ header {
     color: #fff;
     cursor: pointer;
     border-radius: 5px;
+    font-size: 13px;
+}
 
+.save_meta {
+    flex-grow: 1;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding-right: 10px;
+}
+
+.save_meta button {
+    padding: 5px 10px;
+    background: transparent;
+    border: 1px solid #0d6efd;
+    border-radius: 5px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: .2s all ease-in-out;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+}
+
+.save_meta button:hover {
+    background: #0d6efd;
+    color: #fff;
 }

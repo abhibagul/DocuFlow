@@ -37,6 +37,7 @@ export default function Dashboard() {
                 }
                 alert("Something went wrong", JSON.stringify(response));
 
+
             }).catch(err => {
                 alert("Something went wrong", JSON.stringify(err));
             })
@@ -49,7 +50,7 @@ export default function Dashboard() {
 
     return (
         <div className='dashboard'>
-            <NavigationMenu documentId={null} user={user} />
+            <NavigationMenu documentId={null} user={user} pubAction={false} saveBtn={{}} />
             <div className='userDocumentations dash-row-grid'>
 
                 {

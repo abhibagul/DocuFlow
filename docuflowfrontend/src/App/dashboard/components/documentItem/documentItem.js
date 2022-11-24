@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import parse from 'html-react-parser';
 
 export default function DocumentItem(props) {
 
@@ -12,7 +13,7 @@ export default function DocumentItem(props) {
         <div className='documentationItem'>
             <Link to={`/documentation/editor/${props.elem._id}/`}>
                 <div className='doc-item'>
-                    <h1>{props.elem.projectName}</h1>
+                    <h1>{parse(decodeURIComponent(props.elem.projectName))}</h1>
                     <span className='document-date'>{getTime(props.elem.documentCreated)}</span>
                 </div>
             </Link>

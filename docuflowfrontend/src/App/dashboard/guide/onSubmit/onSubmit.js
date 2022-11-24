@@ -1,8 +1,8 @@
 import React from 'react'
 import parse from 'html-react-parser';
 
-export default function PasteSelection(props) {
-    const { e, count, updateMsg } = props;
+export default function OnSubmit(props) {
+    const { e, count } = props;
 
     const getKeysHolding = (node) => {
         let holding = [];
@@ -30,7 +30,7 @@ export default function PasteSelection(props) {
         <div>
             <div className='step-data'>
                 <div className='step-count'><span>{count}</span></div>
-                <p className='step_message' onKeyUp={(el) => { updateMsg(`steps[${(count - 1)}]`, { ...e, "msg": encodeURIComponent((el.target.innerHTML) ? el.target.innerHTML : "") }) }} suppressContentEditableWarning={true} contentEditable>
+                <p className='step_message'>
                     {
                         (e.hasOwnProperty("msg")) ?
                             <span>
@@ -38,7 +38,7 @@ export default function PasteSelection(props) {
                             </span>
                             :
                             <span>
-                                {getKeysHolding(e.data.event)} Content is pasted into {e.data.event.target.nodeName.toLowerCase()}.
+                                {parse(getKeysHolding(e.data.event))} Submit the form.
                             </span>
                     }
                 </p>

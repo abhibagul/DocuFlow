@@ -5,16 +5,17 @@ import LoginPage from './auth/LoginPage/loginPage';
 import SignupPage from './auth/signupPage/signupPage';
 import Dashboard from './dashboard/dashboard';
 import DocumentationEditor from './dashboard/documentationEditor/documentationEditor';
-
-
+import Homepage from './homepage/homepage';
+import Guide from './dashboard/guide/guide';
 function App() {
   return (
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/" element={<h1>Homepage</h1>} exact></Route>
+          <Route path="/" element={<Homepage />} exact></Route>
           <Route path="/login" element={<LoginPage />}></Route>
           <Route path="/signup" element={<SignupPage />}></Route>
+          <Route path="/guide/:documId/" element={<Guide />}></Route>
           <Route path="/dashboard" element={<PrivateRoute />}>
             <Route path="/dashboard" element={<Dashboard />}></Route>
           </Route>

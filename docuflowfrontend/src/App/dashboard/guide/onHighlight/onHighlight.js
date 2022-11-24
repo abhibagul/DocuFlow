@@ -3,7 +3,7 @@ import parse from 'html-react-parser';
 
 export default function OnHighlight(props) {
 
-    const { e, count, updateMsg } = props;
+    const { e, count } = props;
 
 
 
@@ -11,7 +11,7 @@ export default function OnHighlight(props) {
         <div className='onUpdated-step'>
             <div className='step-data'>
                 <div className='step-count'><span>{count}</span></div>
-                <p className='step_message' onKeyUp={(el) => { updateMsg(`steps[${(count - 1)}]`, { ...e, "msg": encodeURIComponent((el.target.innerHTML) ? el.target.innerHTML : "") }) }} suppressContentEditableWarning={true} contentEditable>
+                <p className='step_message'>
                     {
                         (e.hasOwnProperty("msg")) ?
                             <span>

@@ -3,7 +3,7 @@ import parse from 'html-react-parser';
 
 export default function CloseTab(props) {
 
-    const { e, allSteps, count, updateMsg } = props;
+    const { e, allSteps, count } = props;
 
     let [clTab, setClTab] = useState({
         gotTab: false,
@@ -30,7 +30,7 @@ export default function CloseTab(props) {
                 <>
                     <div className='step-data'>
                         <div className='step-count'><span>{count}</span></div>
-                        <p className='step_message' onKeyUp={(el) => { updateMsg(`steps[${(count - 1)}]`, { ...e, "msg": encodeURIComponent((el.target.innerHTML) ? el.target.innerHTML : "") }) }} suppressContentEditableWarning={true} contentEditable>
+                        <p className='step_message'>
                             {
                                 (e.hasOwnProperty("msg")) ?
                                     <span>
@@ -56,7 +56,7 @@ export default function CloseTab(props) {
                 :
                 <div className='step-data'>
                     <div className='step-count'><span>{count}</span></div>
-                    <p className='step_message' onKeyUp={(el) => { updateMsg(`steps[${(count - 1)}]`, { ...e, "msg": encodeURIComponent((el.target.innerHTML) ? el.target.innerHTML : "") }) }} suppressContentEditableWarning={true} contentEditable>
+                    <p className='step_message'>
                         {
                             (e.hasOwnProperty("msg")) ?
                                 <span>

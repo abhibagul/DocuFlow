@@ -1,27 +1,27 @@
 import React from 'react'
 import parse from 'html-react-parser';
 
-export default function DoubleClick(props) {
-    const { e, count, updateMsg } = props;
+export default function ContextMenuClick(props) {
+    const { e, count } = props;
 
 
 
     const getClickType = (node) => {
         switch (node.nodeName) {
             case "INPUT":
-                return "input."
+                return "input, "
                 break;
             case "P":
-                return "paragraph."
+                return "paragraph, "
                 break;
             case "DIV":
-                return "document."
+                return "document, "
                 break;
             case "A":
-                return `link (${node.innerText}).`
+                return `link (${node.innerText}),`
                 break;
             case "IMG":
-                return `image.`
+                return `image, `
                 break;
             default:
                 return node.nodeName
@@ -63,7 +63,7 @@ export default function DoubleClick(props) {
         <div>
             <div className='step-data'>
                 <div className='step-count'><span>{count}</span></div>
-                <p className='step_message' onKeyUp={(el) => { updateMsg(`steps[${(count - 1)}]`, { ...e, "msg": encodeURIComponent((el.target.innerHTML) ? el.target.innerHTML : "") }) }} suppressContentEditableWarning={true} contentEditable>
+                <p className='step_message'>
                     {
                         (e.hasOwnProperty("msg")) ?
                             <span>
@@ -71,13 +71,13 @@ export default function DoubleClick(props) {
                             </span>
                             :
                             <span>
-                                {parse(getKeysHolding(e.data.event))} Double Click on the {getClickType(e.data.event.target)}
+                                {parse(getKeysHolding(e.data.event))} Right-Click on the {getClickType(e.data.event.target)} to open the context menu
                             </span>
                     }
                 </p>
             </div>
             <div className='step_prevImg'>
-                <div className='prev_action_shower' style={getClickPosition(e.data.event)}></div>
+                <div className='prev_action_shower bg-context' style={getClickPosition(e.data.event)}></div>
                 {
                     (e.img) ? <img src={'/' + e.img} /> : ""
                 }

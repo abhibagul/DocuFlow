@@ -1,8 +1,8 @@
 import React from 'react'
 import parse from 'html-react-parser';
 
-export default function DoubleClick(props) {
-    const { e, count, updateMsg } = props;
+export default function AnchorLink(props) {
+    const { e, count } = props;
 
 
 
@@ -63,7 +63,7 @@ export default function DoubleClick(props) {
         <div>
             <div className='step-data'>
                 <div className='step-count'><span>{count}</span></div>
-                <p className='step_message' onKeyUp={(el) => { updateMsg(`steps[${(count - 1)}]`, { ...e, "msg": encodeURIComponent((el.target.innerHTML) ? el.target.innerHTML : "") }) }} suppressContentEditableWarning={true} contentEditable>
+                <p className='step_message'>
                     {
                         (e.hasOwnProperty("msg")) ?
                             <span>
@@ -71,7 +71,8 @@ export default function DoubleClick(props) {
                             </span>
                             :
                             <span>
-                                {parse(getKeysHolding(e.data.event))} Double Click on the {getClickType(e.data.event.target)}
+                                {parse(getKeysHolding(e.data.event))}
+                                Click on the {getClickType(e.data.event.target)}
                             </span>
                     }
                 </p>
@@ -82,6 +83,6 @@ export default function DoubleClick(props) {
                     (e.img) ? <img src={'/' + e.img} /> : ""
                 }
             </div>
-        </div>
+        </div >
     )
 }

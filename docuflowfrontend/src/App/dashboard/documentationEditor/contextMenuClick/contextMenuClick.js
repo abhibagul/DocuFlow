@@ -2,7 +2,7 @@ import React from 'react'
 import parse from 'html-react-parser';
 
 export default function ContextMenuClick(props) {
-    const { e, count } = props;
+    const { e, count, updateMsg } = props;
 
 
 
@@ -63,7 +63,18 @@ export default function ContextMenuClick(props) {
         <div>
             <div className='step-data'>
                 <div className='step-count'><span>{count}</span></div>
-                <p className='step_message' suppressContentEditableWarning={true} contentEditable> {parse(getKeysHolding(e.data.event))} Right-Click on the {getClickType(e.data.event.target)} to open the context menu</p>
+                <p className='step_message' onKeyUp={(el) => { updateMsg(`steps[${(count - 1)}]`, { ...e, "msg": encodeURIComponent((el.target.innerHTML) ? el.target.innerHTML : "") }) }} suppressContentEditableWarning={true} contentEditable>
+                    {
+                        (e.hasOwnProperty("msg")) ?
+                            <span>
+                                {(e.msg.length > 0) ? parse(decodeURIComponent(e.msg)) : ""}
+                            </span>
+                            :
+                            <span>
+                                {parse(getKeysHolding(e.data.event))} Right-Click on the {getClickType(e.data.event.target)} to open the context menu
+                            </span>
+                    }
+                </p>
             </div>
             <div className='step_prevImg'>
                 <div className='prev_action_shower bg-context' style={getClickPosition(e.data.event)}></div>

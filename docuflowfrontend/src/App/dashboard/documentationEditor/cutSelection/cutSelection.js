@@ -2,7 +2,7 @@ import React from 'react'
 import parse from 'html-react-parser';
 
 export default function CutSelection(props) {
-    const { e, count } = props;
+    const { e, count, updateMsg } = props;
 
     const getKeysHolding = (node) => {
         let holding = [];
@@ -30,7 +30,18 @@ export default function CutSelection(props) {
         <div>
             <div className='step-data'>
                 <div className='step-count'><span>{count}</span></div>
-                <p className='step_message' suppressContentEditableWarning={true} contentEditable> {getKeysHolding(e.data.event)} do a cut selection.</p>
+                <p className='step_message' onKeyUp={(el) => { updateMsg(`steps[${(count - 1)}]`, { ...e, "msg": encodeURIComponent((el.target.innerHTML) ? el.target.innerHTML : "") }) }} suppressContentEditableWarning={true} contentEditable>
+                    {
+                        (e.hasOwnProperty("msg")) ?
+                            <span>
+                                {(e.msg.length > 0) ? parse(decodeURIComponent(e.msg)) : ""}
+                            </span>
+                            :
+                            <span>
+                                {getKeysHolding(e.data.event)} do a cut selection.
+                            </span>
+                    }
+                </p>
             </div>
             <div className='step_prevImg'>
                 {
