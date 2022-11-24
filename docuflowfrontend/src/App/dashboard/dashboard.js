@@ -4,6 +4,7 @@ import { useToken } from '../auth/useToken'
 import axios from 'axios';
 import DocumentItem from './components/documentItem/documentItem';
 import NavigationMenu from '../NavigationMenu/navigationMenu';
+import InstallExtension from './installExtension/installExtension';
 
 import './dash.css'
 
@@ -51,12 +52,17 @@ export default function Dashboard() {
     return (
         <div className='dashboard'>
             <NavigationMenu documentId={null} user={user} pubAction={false} saveBtn={{}} />
-            <div className='userDocumentations dash-row-grid'>
+            <div className={(docs.documents.length > 0) ? 'userDocumentations dash-row-grid' : 'userDocumentations installPlugin'}>
 
                 {
-                    docs.documents.map((e, i) => {
-                        return (<DocumentItem key={i} elem={e} />)
-                    })
+                    (docs.documents.length > 0) ?
+                        docs.documents.map((e, i) => {
+                            return (<DocumentItem key={i} elem={e} />)
+                        })
+                        :
+                        <span>
+                            <InstallExtension />
+                        </span>
                 }
             </div>
         </div>
